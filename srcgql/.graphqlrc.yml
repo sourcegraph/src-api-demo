@@ -1,0 +1,6 @@
+# GraphQL config file
+# this file is used by the various GraphQL tools
+# e.g. GraphQL extensions in Jetbrains IDEs reads from this file
+# and provides autocompletion for GraphQL queries
+schema:
+  - ./src.schema.graphql

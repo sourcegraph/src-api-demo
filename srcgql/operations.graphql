@@ -1,0 +1,45 @@
+# GetExternalServices collects useful summary information for configured
+# external services. Note that config automatically redacts secrets.
+query GetExternalServices {
+    externalServices {
+        nodes {
+            kind
+            id
+            displayName
+
+            config
+            createdAt
+            updatedAt
+
+            repoCount
+
+            lastSyncAt
+            lastSyncError
+            nextSyncAt
+
+            checkConnection {
+                __typename
+                ... on ExternalServiceAvailable {
+                    lastCheckedAt
+                }
+                ... on ExternalServiceUnavailable {
+                    suspectedReason
+                }
+                ... on ExternalServiceAvailabilityUnknown {
+                    implementationNote
+                }
+            }
+        }
+    }
+}
+
+mutation UpdateExternalService($id: ID!, $displayName: String!, $config: String!) {
+   updateExternalService(input: {id: $id, displayName: $displayName, config: $config}) {
+        kind
+        id
+        displayName
+        config
+        createdAt
+        updatedAt
+   }
+}

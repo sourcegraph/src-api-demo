@@ -1,0 +1,17 @@
+schema:
+  - src.schema.graphql
+operations:
+  - operations.graphql
+generated: generated.go
+bindings:
+  DateTime:
+    type: time.Time
+  JSONCString:
+    type: string
+  JSONValue:
+    type: github.com/sourcegraph/src-api-demo/internal/jsonvalue.JSONValue
+    unmarshaler: github.com/sourcegraph/src-api-demo/internal/jsonvalue.UnmarshalJSONValue
+    marshaler: github.com/sourcegraph/src-api-demo/internal/jsonvalue.MarshalJSONValue
+  BigInt:
+    type: github.com/sourcegraph/src-api-demo/internal/gqltypes.BigInt
+optional: pointer
