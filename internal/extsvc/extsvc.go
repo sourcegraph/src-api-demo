@@ -17,6 +17,8 @@ func New(kind srcgql.ExternalServiceKind, config string) (Config, error) {
 	switch kind {
 	case srcgql.ExternalServiceKindGithub:
 		return NewGitHubConfig(config)
+	case srcgql.ExternalServiceKindGitlab:
+		return NewGitLabConfig(config)
 	// TODO: Add support for other external service kinds.
 	default:
 		return nil, errors.Newf("unsupported external service kind: %q", kind)
