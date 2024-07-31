@@ -53,6 +53,13 @@ var gen = &cli.App{
 			Name:  "archive.path",
 			Usage: "The path to the repository archive to generate the schema from. version flag is ignored if this is set",
 		},
+		&cli.StringSliceFlag{
+			Name:  "exclude-pattern",
+			Usage: "Exclude files that match the given glob pattern",
+			// some directories are known to contain graphql schema files that are not part of Sourcegraph API, e.g., Linear
+			// we need to ignore them
+			Value: cli.NewStringSlice("dev/**"),
+		},
 		// only use in bazel to avoid injecting go toolchain into sandbox
 		&cli.BoolFlag{
 			Name:  "schema-only",
@@ -67,7 +74,7 @@ var gen = &cli.App{
 			return errors.Wrap(err, "failed to get current working directory")
 		}
 
-		tmpDir, err := os.MkdirTemp("", "srcgql-")
+		tmpDir, err := os.MkdirTemp("", "mi2-srcgql-")
 		if err != nil {
 			return errors.Wrap(err, "failed to get user cache dir")
 		}
@@ -102,14 +109,26 @@ var gen = &cli.App{
 			if err != nil {
 				return err
 			}
+			relPath, err := filepath.Rel(repoDir, path)
+			if err != nil {
+				return errors.Wrapf(err, "get relative path %q w.r.t %q", path, repoDir)
+			}
 			if d.IsDir() {
+				// skip directories that match exclude pattern
+				for _, pattern := range c.StringSlice("exclude-pattern") {
+					if ok, err := filepath.Match(pattern, relPath); ok {
+						return filepath.SkipDir
+					} else if err != nil {
+						return errors.Wrapf(err, "match path %q with pattern %q", relPath, pattern)
+					}
+				}
 				return nil
 			}
 			if filepath.Ext(path) != ".graphql" {
 				return nil
 			}
 
-			logger := logger.With(log.String("path", path))
+			logger := logger.With(log.String("path", path), log.String("relpath", relPath))
 			logger.Debug("found graphql schema file")
 
 			// ignore any query/mutation files, they are not schema

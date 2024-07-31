@@ -25,5 +25,6 @@ var app = &cli.App{
 	Name: "src-api-demo",
 	Commands: []*cli.Command{
 		codeHostConn,
+		codeIntel,
 	},
 }

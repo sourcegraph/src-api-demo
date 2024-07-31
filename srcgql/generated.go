@@ -11,6 +11,126 @@ import (
 	"github.com/Khan/genqlient/graphql"
 )
 
+// CodeIntelligenceConfigurationPolicyFields includes the GraphQL fields of CodeIntelligenceConfigurationPolicy requested by the fragment CodeIntelligenceConfigurationPolicyFields.
+// The GraphQL type's documentation follows.
+//
+// A configuration policy that applies to a set of Git objects matching an associated
+// pattern. Each policy has optional data retention and auto-indexing schedule configuration
+// attached. A policy can be applied globally or on a per-repository basis.
+type CodeIntelligenceConfigurationPolicyFields struct {
+	// The ID.
+	Id string `json:"id"`
+	// A description of the configuration policy.
+	Name string `json:"name"`
+	// The set of name patterns matching repositories to which this configuration policy applies.
+	RepositoryPatterns []string `json:"repositoryPatterns"`
+	// The type of Git object described by the configuration policy.
+	Type GitObjectType `json:"type"`
+	// A pattern matching the name of the matching Git object.
+	Pattern string `json:"pattern"`
+	// Protected policies may not be deleted (or created directly by users).
+	Protected bool `json:"protected"`
+	// Whether or not this configuration policy affects data retention rules.
+	RetentionEnabled bool `json:"retentionEnabled"`
+	// The max age of data retained by this configuration policy.
+	RetentionDurationHours *int `json:"retentionDurationHours"`
+	// If the matching Git object is a branch, setting this value to true will also
+	// retain all data used to resolve queries for any commit on the matching branches.
+	// Setting this value to false will only consider the tip of the branch.
+	RetainIntermediateCommits bool `json:"retainIntermediateCommits"`
+	// Whether or not this configuration policy affects auto-indexing schedules.
+	IndexingEnabled bool `json:"indexingEnabled"`
+	// The max age of commits indexed by this configuration policy.
+	IndexCommitMaxAgeHours *int `json:"indexCommitMaxAgeHours"`
+	// If the matching Git object is a branch, setting this value to true will also
+	// index all commits on the matching branches. Setting this value to false will
+	// only consider the tip of the branch.
+	IndexIntermediateCommits bool `json:"indexIntermediateCommits"`
+	// Whether or not this configuration policy affects embeddings.
+	EmbeddingsEnabled bool `json:"embeddingsEnabled"`
+}
+
+// GetId returns CodeIntelligenceConfigurationPolicyFields.Id, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetId() string { return v.Id }
+
+// GetName returns CodeIntelligenceConfigurationPolicyFields.Name, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetName() string { return v.Name }
+
+// GetRepositoryPatterns returns CodeIntelligenceConfigurationPolicyFields.RepositoryPatterns, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetRepositoryPatterns() []string {
+	return v.RepositoryPatterns
+}
+
+// GetType returns CodeIntelligenceConfigurationPolicyFields.Type, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetType() GitObjectType { return v.Type }
+
+// GetPattern returns CodeIntelligenceConfigurationPolicyFields.Pattern, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetPattern() string { return v.Pattern }
+
+// GetProtected returns CodeIntelligenceConfigurationPolicyFields.Protected, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetProtected() bool { return v.Protected }
+
+// GetRetentionEnabled returns CodeIntelligenceConfigurationPolicyFields.RetentionEnabled, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetRetentionEnabled() bool {
+	return v.RetentionEnabled
+}
+
+// GetRetentionDurationHours returns CodeIntelligenceConfigurationPolicyFields.RetentionDurationHours, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetRetentionDurationHours() *int {
+	return v.RetentionDurationHours
+}
+
+// GetRetainIntermediateCommits returns CodeIntelligenceConfigurationPolicyFields.RetainIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetRetainIntermediateCommits() bool {
+	return v.RetainIntermediateCommits
+}
+
+// GetIndexingEnabled returns CodeIntelligenceConfigurationPolicyFields.IndexingEnabled, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetIndexingEnabled() bool {
+	return v.IndexingEnabled
+}
+
+// GetIndexCommitMaxAgeHours returns CodeIntelligenceConfigurationPolicyFields.IndexCommitMaxAgeHours, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetIndexCommitMaxAgeHours() *int {
+	return v.IndexCommitMaxAgeHours
+}
+
+// GetIndexIntermediateCommits returns CodeIntelligenceConfigurationPolicyFields.IndexIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetIndexIntermediateCommits() bool {
+	return v.IndexIntermediateCommits
+}
+
+// GetEmbeddingsEnabled returns CodeIntelligenceConfigurationPolicyFields.EmbeddingsEnabled, and is useful for accessing the field via an interface.
+func (v *CodeIntelligenceConfigurationPolicyFields) GetEmbeddingsEnabled() bool {
+	return v.EmbeddingsEnabled
+}
+
+// CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy includes the requested fields of the GraphQL type CodeIntelligenceConfigurationPolicy.
+// The GraphQL type's documentation follows.
+//
+// A configuration policy that applies to a set of Git objects matching an associated
+// pattern. Each policy has optional data retention and auto-indexing schedule configuration
+// attached. A policy can be applied globally or on a per-repository basis.
+type CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy struct {
+	Typename *string `json:"__typename"`
+}
+
+// GetTypename returns CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy.Typename, and is useful for accessing the field via an interface.
+func (v *CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy) GetTypename() *string {
+	return v.Typename
+}
+
+// CreateCodeIntelligenceConfigurationPolicyResponse is returned by CreateCodeIntelligenceConfigurationPolicy on success.
+type CreateCodeIntelligenceConfigurationPolicyResponse struct {
+	// Creates a new configuration policy with the given attributes.
+	CreateCodeIntelligenceConfigurationPolicy CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy `json:"createCodeIntelligenceConfigurationPolicy"`
+}
+
+// GetCreateCodeIntelligenceConfigurationPolicy returns CreateCodeIntelligenceConfigurationPolicyResponse.CreateCodeIntelligenceConfigurationPolicy, and is useful for accessing the field via an interface.
+func (v *CreateCodeIntelligenceConfigurationPolicyResponse) GetCreateCodeIntelligenceConfigurationPolicy() CreateCodeIntelligenceConfigurationPolicyCreateCodeIntelligenceConfigurationPolicy {
+	return v.CreateCodeIntelligenceConfigurationPolicy
+}
+
 // A specific kind of external service.
 type ExternalServiceKind string
 
@@ -34,6 +154,187 @@ const (
 	ExternalServiceKindRustpackages    ExternalServiceKind = "RUSTPACKAGES"
 	ExternalServiceKindRubypackages    ExternalServiceKind = "RUBYPACKAGES"
 )
+
+// GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection includes the requested fields of the GraphQL type CodeIntelligenceConfigurationPolicyConnection.
+// The GraphQL type's documentation follows.
+//
+// A list of code intelligence configuration policies.
+type GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection struct {
+	// A list of code intelligence configuration policies.
+	Nodes []GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy `json:"nodes"`
+}
+
+// GetNodes returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection.Nodes, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection) GetNodes() []GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy {
+	return v.Nodes
+}
+
+// GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy includes the requested fields of the GraphQL type CodeIntelligenceConfigurationPolicy.
+// The GraphQL type's documentation follows.
+//
+// A configuration policy that applies to a set of Git objects matching an associated
+// pattern. Each policy has optional data retention and auto-indexing schedule configuration
+// attached. A policy can be applied globally or on a per-repository basis.
+type GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy struct {
+	CodeIntelligenceConfigurationPolicyFields `json:"-"`
+}
+
+// GetId returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.Id, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetId() string {
+	return v.CodeIntelligenceConfigurationPolicyFields.Id
+}
+
+// GetName returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.Name, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetName() string {
+	return v.CodeIntelligenceConfigurationPolicyFields.Name
+}
+
+// GetRepositoryPatterns returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.RepositoryPatterns, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetRepositoryPatterns() []string {
+	return v.CodeIntelligenceConfigurationPolicyFields.RepositoryPatterns
+}
+
+// GetType returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.Type, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetType() GitObjectType {
+	return v.CodeIntelligenceConfigurationPolicyFields.Type
+}
+
+// GetPattern returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.Pattern, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetPattern() string {
+	return v.CodeIntelligenceConfigurationPolicyFields.Pattern
+}
+
+// GetProtected returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.Protected, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetProtected() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.Protected
+}
+
+// GetRetentionEnabled returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.RetentionEnabled, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetRetentionEnabled() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.RetentionEnabled
+}
+
+// GetRetentionDurationHours returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.RetentionDurationHours, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetRetentionDurationHours() *int {
+	return v.CodeIntelligenceConfigurationPolicyFields.RetentionDurationHours
+}
+
+// GetRetainIntermediateCommits returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.RetainIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetRetainIntermediateCommits() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.RetainIntermediateCommits
+}
+
+// GetIndexingEnabled returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.IndexingEnabled, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetIndexingEnabled() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.IndexingEnabled
+}
+
+// GetIndexCommitMaxAgeHours returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.IndexCommitMaxAgeHours, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetIndexCommitMaxAgeHours() *int {
+	return v.CodeIntelligenceConfigurationPolicyFields.IndexCommitMaxAgeHours
+}
+
+// GetIndexIntermediateCommits returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.IndexIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetIndexIntermediateCommits() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.IndexIntermediateCommits
+}
+
+// GetEmbeddingsEnabled returns GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy.EmbeddingsEnabled, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) GetEmbeddingsEnabled() bool {
+	return v.CodeIntelligenceConfigurationPolicyFields.EmbeddingsEnabled
+}
+
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.CodeIntelligenceConfigurationPolicyFields)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalGetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy struct {
+	Id string `json:"id"`
+
+	Name string `json:"name"`
+
+	RepositoryPatterns []string `json:"repositoryPatterns"`
+
+	Type GitObjectType `json:"type"`
+
+	Pattern string `json:"pattern"`
+
+	Protected bool `json:"protected"`
+
+	RetentionEnabled bool `json:"retentionEnabled"`
+
+	RetentionDurationHours *int `json:"retentionDurationHours"`
+
+	RetainIntermediateCommits bool `json:"retainIntermediateCommits"`
+
+	IndexingEnabled bool `json:"indexingEnabled"`
+
+	IndexCommitMaxAgeHours *int `json:"indexCommitMaxAgeHours"`
+
+	IndexIntermediateCommits bool `json:"indexIntermediateCommits"`
+
+	EmbeddingsEnabled bool `json:"embeddingsEnabled"`
+}
+
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy) __premarshalJSON() (*__premarshalGetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy, error) {
+	var retval __premarshalGetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnectionNodesCodeIntelligenceConfigurationPolicy
+
+	retval.Id = v.CodeIntelligenceConfigurationPolicyFields.Id
+	retval.Name = v.CodeIntelligenceConfigurationPolicyFields.Name
+	retval.RepositoryPatterns = v.CodeIntelligenceConfigurationPolicyFields.RepositoryPatterns
+	retval.Type = v.CodeIntelligenceConfigurationPolicyFields.Type
+	retval.Pattern = v.CodeIntelligenceConfigurationPolicyFields.Pattern
+	retval.Protected = v.CodeIntelligenceConfigurationPolicyFields.Protected
+	retval.RetentionEnabled = v.CodeIntelligenceConfigurationPolicyFields.RetentionEnabled
+	retval.RetentionDurationHours = v.CodeIntelligenceConfigurationPolicyFields.RetentionDurationHours
+	retval.RetainIntermediateCommits = v.CodeIntelligenceConfigurationPolicyFields.RetainIntermediateCommits
+	retval.IndexingEnabled = v.CodeIntelligenceConfigurationPolicyFields.IndexingEnabled
+	retval.IndexCommitMaxAgeHours = v.CodeIntelligenceConfigurationPolicyFields.IndexCommitMaxAgeHours
+	retval.IndexIntermediateCommits = v.CodeIntelligenceConfigurationPolicyFields.IndexIntermediateCommits
+	retval.EmbeddingsEnabled = v.CodeIntelligenceConfigurationPolicyFields.EmbeddingsEnabled
+	return &retval, nil
+}
+
+// GetCodeIntelligenceConfigurationPoliciesResponse is returned by GetCodeIntelligenceConfigurationPolicies on success.
+type GetCodeIntelligenceConfigurationPoliciesResponse struct {
+	// Returns precise code intelligence configuration policies that control data retention
+	// and (if enabled) auto-indexing behavior.
+	CodeIntelligenceConfigurationPolicies GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection `json:"codeIntelligenceConfigurationPolicies"`
+}
+
+// GetCodeIntelligenceConfigurationPolicies returns GetCodeIntelligenceConfigurationPoliciesResponse.CodeIntelligenceConfigurationPolicies, and is useful for accessing the field via an interface.
+func (v *GetCodeIntelligenceConfigurationPoliciesResponse) GetCodeIntelligenceConfigurationPolicies() GetCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPoliciesCodeIntelligenceConfigurationPolicyConnection {
+	return v.CodeIntelligenceConfigurationPolicies
+}
 
 // GetExternalServicesExternalServicesExternalServiceConnection includes the requested fields of the GraphQL type ExternalServiceConnection.
 // The GraphQL type's documentation follows.
@@ -395,6 +696,22 @@ func (v *GetExternalServicesResponse) GetExternalServices() GetExternalServicesE
 	return v.ExternalServices
 }
 
+// All possible types of Git objects.
+type GitObjectType string
+
+const (
+	// A Git commit object.
+	GitObjectTypeGitCommit GitObjectType = "GIT_COMMIT"
+	// A Git tag object.
+	GitObjectTypeGitTag GitObjectType = "GIT_TAG"
+	// A Git tree object.
+	GitObjectTypeGitTree GitObjectType = "GIT_TREE"
+	// A Git blob object.
+	GitObjectTypeGitBlob GitObjectType = "GIT_BLOB"
+	// A Git object of unknown type.
+	GitObjectTypeGitUnknown GitObjectType = "GIT_UNKNOWN"
+)
+
 // UpdateExternalServiceResponse is returned by UpdateExternalService on success.
 type UpdateExternalServiceResponse struct {
 	// Updates a external service. Only site admins may perform this mutation.
@@ -443,6 +760,60 @@ func (v *UpdateExternalServiceUpdateExternalService) GetCreatedAt() time.Time { 
 // GetUpdatedAt returns UpdateExternalServiceUpdateExternalService.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *UpdateExternalServiceUpdateExternalService) GetUpdatedAt() time.Time { return v.UpdatedAt }
 
+// __CreateCodeIntelligenceConfigurationPolicyInput is used internally by genqlient
+type __CreateCodeIntelligenceConfigurationPolicyInput struct {
+	Name                      string        `json:"name"`
+	GitObjectType             GitObjectType `json:"gitObjectType"`
+	Pattern                   string        `json:"pattern"`
+	RetentionEnabled          *bool         `json:"retentionEnabled"`
+	RetentionDurationHours    *int          `json:"retentionDurationHours"`
+	RetainIntermediateCommits *bool         `json:"retainIntermediateCommits"`
+	IndexingEnabled           *bool         `json:"indexingEnabled"`
+	IndexCommitMaxAgeHours    *int          `json:"indexCommitMaxAgeHours"`
+	IndexIntermediateCommits  *bool         `json:"indexIntermediateCommits"`
+}
+
+// GetName returns __CreateCodeIntelligenceConfigurationPolicyInput.Name, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetName() string { return v.Name }
+
+// GetGitObjectType returns __CreateCodeIntelligenceConfigurationPolicyInput.GitObjectType, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetGitObjectType() GitObjectType {
+	return v.GitObjectType
+}
+
+// GetPattern returns __CreateCodeIntelligenceConfigurationPolicyInput.Pattern, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetPattern() string { return v.Pattern }
+
+// GetRetentionEnabled returns __CreateCodeIntelligenceConfigurationPolicyInput.RetentionEnabled, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetRetentionEnabled() *bool {
+	return v.RetentionEnabled
+}
+
+// GetRetentionDurationHours returns __CreateCodeIntelligenceConfigurationPolicyInput.RetentionDurationHours, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetRetentionDurationHours() *int {
+	return v.RetentionDurationHours
+}
+
+// GetRetainIntermediateCommits returns __CreateCodeIntelligenceConfigurationPolicyInput.RetainIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetRetainIntermediateCommits() *bool {
+	return v.RetainIntermediateCommits
+}
+
+// GetIndexingEnabled returns __CreateCodeIntelligenceConfigurationPolicyInput.IndexingEnabled, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetIndexingEnabled() *bool {
+	return v.IndexingEnabled
+}
+
+// GetIndexCommitMaxAgeHours returns __CreateCodeIntelligenceConfigurationPolicyInput.IndexCommitMaxAgeHours, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetIndexCommitMaxAgeHours() *int {
+	return v.IndexCommitMaxAgeHours
+}
+
+// GetIndexIntermediateCommits returns __CreateCodeIntelligenceConfigurationPolicyInput.IndexIntermediateCommits, and is useful for accessing the field via an interface.
+func (v *__CreateCodeIntelligenceConfigurationPolicyInput) GetIndexIntermediateCommits() *bool {
+	return v.IndexIntermediateCommits
+}
+
 // __UpdateExternalServiceInput is used internally by genqlient
 type __UpdateExternalServiceInput struct {
 	Id          string `json:"id"`
@@ -458,6 +829,105 @@ func (v *__UpdateExternalServiceInput) GetDisplayName() string { return v.Displa
 
 // GetConfig returns __UpdateExternalServiceInput.Config, and is useful for accessing the field via an interface.
 func (v *__UpdateExternalServiceInput) GetConfig() string { return v.Config }
+
+// The query or mutation executed by CreateCodeIntelligenceConfigurationPolicy.
+const CreateCodeIntelligenceConfigurationPolicy_Operation = `
+mutation CreateCodeIntelligenceConfigurationPolicy ($name: String!, $gitObjectType: GitObjectType!, $pattern: String!, $retentionEnabled: Boolean = false, $retentionDurationHours: Int, $retainIntermediateCommits: Boolean = false, $indexingEnabled: Boolean = true, $indexCommitMaxAgeHours: Int, $indexIntermediateCommits: Boolean = false) {
+	createCodeIntelligenceConfigurationPolicy(name: $name, type: $gitObjectType, pattern: $pattern, retentionEnabled: $retentionEnabled, retentionDurationHours: $retentionDurationHours, retainIntermediateCommits: $retainIntermediateCommits, indexingEnabled: $indexingEnabled, indexCommitMaxAgeHours: $indexCommitMaxAgeHours, indexIntermediateCommits: $indexIntermediateCommits) {
+		__typename
+	}
+}
+`
+
+func CreateCodeIntelligenceConfigurationPolicy(
+	ctx context.Context,
+	client graphql.Client,
+	name string,
+	gitObjectType GitObjectType,
+	pattern string,
+	retentionEnabled *bool,
+	retentionDurationHours *int,
+	retainIntermediateCommits *bool,
+	indexingEnabled *bool,
+	indexCommitMaxAgeHours *int,
+	indexIntermediateCommits *bool,
+) (*CreateCodeIntelligenceConfigurationPolicyResponse, error) {
+	req := &graphql.Request{
+		OpName: "CreateCodeIntelligenceConfigurationPolicy",
+		Query:  CreateCodeIntelligenceConfigurationPolicy_Operation,
+		Variables: &__CreateCodeIntelligenceConfigurationPolicyInput{
+			Name:                      name,
+			GitObjectType:             gitObjectType,
+			Pattern:                   pattern,
+			RetentionEnabled:          retentionEnabled,
+			RetentionDurationHours:    retentionDurationHours,
+			RetainIntermediateCommits: retainIntermediateCommits,
+			IndexingEnabled:           indexingEnabled,
+			IndexCommitMaxAgeHours:    indexCommitMaxAgeHours,
+			IndexIntermediateCommits:  indexIntermediateCommits,
+		},
+	}
+	var err error
+
+	var data CreateCodeIntelligenceConfigurationPolicyResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
+	)
+
+	return &data, err
+}
+
+// The query or mutation executed by GetCodeIntelligenceConfigurationPolicies.
+const GetCodeIntelligenceConfigurationPolicies_Operation = `
+query GetCodeIntelligenceConfigurationPolicies {
+	codeIntelligenceConfigurationPolicies {
+		nodes {
+			... CodeIntelligenceConfigurationPolicyFields
+		}
+	}
+}
+fragment CodeIntelligenceConfigurationPolicyFields on CodeIntelligenceConfigurationPolicy {
+	id
+	name
+	repositoryPatterns
+	type
+	pattern
+	protected
+	retentionEnabled
+	retentionDurationHours
+	retainIntermediateCommits
+	indexingEnabled
+	indexCommitMaxAgeHours
+	indexIntermediateCommits
+	embeddingsEnabled
+}
+`
+
+func GetCodeIntelligenceConfigurationPolicies(
+	ctx context.Context,
+	client graphql.Client,
+) (*GetCodeIntelligenceConfigurationPoliciesResponse, error) {
+	req := &graphql.Request{
+		OpName: "GetCodeIntelligenceConfigurationPolicies",
+		Query:  GetCodeIntelligenceConfigurationPolicies_Operation,
+	}
+	var err error
+
+	var data GetCodeIntelligenceConfigurationPoliciesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
+	)
+
+	return &data, err
+}
 
 // The query or mutation executed by GetExternalServices.
 const GetExternalServices_Operation = `

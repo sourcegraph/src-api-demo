@@ -43,3 +43,53 @@ mutation UpdateExternalService($id: ID!, $displayName: String!, $config: String!
         updatedAt
    }
 }
+
+mutation CreateCodeIntelligenceConfigurationPolicy(
+    $name: String!
+    $gitObjectType: GitObjectType!
+    $pattern: String!
+    $retentionEnabled: Boolean = false
+    $retentionDurationHours: Int
+    $retainIntermediateCommits: Boolean = false
+    $indexingEnabled: Boolean = true
+    $indexCommitMaxAgeHours: Int
+    $indexIntermediateCommits: Boolean = false
+) {
+    createCodeIntelligenceConfigurationPolicy(
+        name: $name
+        type: $gitObjectType
+        pattern: $pattern
+        retentionEnabled: $retentionEnabled
+        retentionDurationHours: $retentionDurationHours
+        retainIntermediateCommits: $retainIntermediateCommits
+        indexingEnabled: $indexingEnabled
+        indexCommitMaxAgeHours: $indexCommitMaxAgeHours
+        indexIntermediateCommits: $indexIntermediateCommits
+    ) {
+        __typename
+    }
+}
+
+query GetCodeIntelligenceConfigurationPolicies {
+    codeIntelligenceConfigurationPolicies {
+        nodes {
+            ...CodeIntelligenceConfigurationPolicyFields
+        }
+    }
+}
+
+fragment CodeIntelligenceConfigurationPolicyFields on CodeIntelligenceConfigurationPolicy {
+    id
+    name
+    repositoryPatterns
+    type
+    pattern
+    protected
+    retentionEnabled
+    retentionDurationHours
+    retainIntermediateCommits
+    indexingEnabled
+    indexCommitMaxAgeHours
+    indexIntermediateCommits
+    embeddingsEnabled
+}
