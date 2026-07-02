@@ -1,6 +1,6 @@
 module github.com/sourcegraph/src-api-demo
 
-go 1.21.3
+go 1.26.4
 
 require (
 	github.com/Khan/genqlient v0.6.0

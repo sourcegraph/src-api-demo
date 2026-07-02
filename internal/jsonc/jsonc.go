@@ -87,7 +87,7 @@ func ApplyEdits(data string, edits ...Patch) (string, error) {
 		var err error
 		if e.Value == nil ||
 			// Check for typed nils
-			(reflect.ValueOf(e.Value).Kind() == reflect.Ptr && reflect.ValueOf(e.Value).IsNil()) {
+			(reflect.ValueOf(e.Value).Kind() == reflect.Pointer && reflect.ValueOf(e.Value).IsNil()) {
 			data, err = Remove(data, e.Path)
 			if err != nil {
 				return "", errors.Wrap(err, e.Path)
